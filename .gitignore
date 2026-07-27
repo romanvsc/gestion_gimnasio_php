@@ -1,0 +1,67 @@
+# Secrets and environment-specific configuration
+.env
+.env.*
+!.env.example
+backend/.env
+backend/.env.*
+!backend/.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+.htpasswd
+
+# Runtime and user-generated data
+backend/uploads/
+backend/tools/legacy_import_credentials_*.txt
+*.log
+*.pid
+*.tmp
+*.temp
+*.cache
+
+# Frontend dependencies and generated output
+frontend/node_modules/
+frontend/dist/
+frontend/dist-ssr/
+frontend/coverage/
+frontend/.vite/
+node_modules/
+
+# FileZilla-ready local deployment package
+/deploy_filezilla/
+
+# Local database exports and ad-hoc checks
+/gym_viejo_supabase/
+/test_*.php
+*.sql.gz
+*.dump
+*.bak
+
+# Local tooling and editor settings
+/.agents/
+/skills-lock.json
+/package-lock.json
+.vscode/
+.idea/
+*.code-workspace
+*.suo
+*.user
+*.swp
+*.swo
+
+# Operating-system metadata
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# PHP tooling
+vendor/
+.phpunit.cache/
+.phpunit.result.cache
+
+# Package-manager and debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*

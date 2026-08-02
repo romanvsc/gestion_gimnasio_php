@@ -88,8 +88,8 @@
         </FormField>
       </div>
 
-      <label for="member-club" class="flex min-h-11 items-center gap-3 rounded-lg border border-paper-300 bg-paper-100 px-3 py-3 text-sm font-semibold text-ink-0">
-        <input id="member-club" v-model="form.is_club_member" type="checkbox" class="h-4 w-4 accent-forest-0" />
+      <label for="member-club" class="flex min-h-11 items-center gap-3 rounded-lg border border-border-strong bg-surface-muted px-3 py-3 text-sm font-semibold text-content">
+        <input id="member-club" v-model="form.is_club_member" type="checkbox" class="h-4 w-4 accent-brand" />
         Socio club
       </label>
 
@@ -105,8 +105,8 @@
         </template>
       </FormField>
 
-      <div v-if="error" class="rounded-lg border border-red-200 bg-red-50 px-4 py-3" role="alert">
-        <p class="text-sm font-medium text-red-800">{{ error }}</p>
+      <div v-if="error" class="rounded-lg border border-status-danger/30 bg-status-danger/10 px-4 py-3" role="alert">
+        <p class="text-sm font-medium text-status-danger">{{ error }}</p>
       </div>
 
       <div class="flex flex-col-reverse gap-3 pt-1 sm:flex-row">

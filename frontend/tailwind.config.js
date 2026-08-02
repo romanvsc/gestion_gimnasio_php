@@ -7,14 +7,45 @@ export default {
   theme: {
     extend: {
       colors: {
-        forest: { 0: '#151311', 900: '#151311', 800: '#241F1B', 700: '#332B25', 100: '#EED3BA' },
-        slate:  { 0: '#4B262F', 800: '#351B22', 100: '#E8CDD2' },
-        timber: { 0: '#EED3BA', 800: '#4B262F', 100: '#F7E8D8' },
-        paper:  { 0: '#F8F3EC', 100: '#EFE7DE', 200: '#DCCDBC', 300: '#C9B9A7' },
-        ink:    { 0: '#151311', 700: '#2A2420', 500: '#6F5D55' },
-        lime:   { DEFAULT: '#EED3BA', dark: '#4B262F' },
-        dark:   { DEFAULT: '#151311', 900: '#151311', 800: '#241F1B', 700: '#2A2420', 600: '#6F5D55', 500: '#9B8578' },
-        glass:  { DEFAULT: '#F8F3EC', border: '#C9B9A7' },
+        brand: {
+          DEFAULT: '#4B262F',
+          dark: '#351B22',
+          soft: '#E8CDD2',
+        },
+        accent: {
+          DEFAULT: '#EED3BA',
+          soft: '#F7E8D8',
+        },
+        surface: {
+          canvas: '#F8F3EC',
+          DEFAULT: '#F8F3EC',
+          muted: '#EFE7DE',
+          elevated: '#FFFDF9',
+          strong: '#DCCDBC',
+        },
+        sidebar: {
+          DEFAULT: '#151311',
+          elevated: '#241F1B',
+          active: '#332B25',
+        },
+        content: {
+          DEFAULT: '#151311',
+          strong: '#2A2420',
+          secondary: '#6F5D55',
+          muted: '#9B8578',
+          inverse: '#F8F3EC',
+        },
+        border: {
+          DEFAULT: '#DCCDBC',
+          strong: '#C9B9A7',
+          dark: '#332B25',
+        },
+        status: {
+          success: '#56705F',
+          warning: '#AD7039',
+          danger: '#7A2E3C',
+          info: '#586B7D',
+        },
       },
       fontFamily: {
         heading: ['Inter', 'sans-serif'],

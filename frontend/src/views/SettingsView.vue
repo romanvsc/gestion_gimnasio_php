@@ -5,27 +5,27 @@
         <div>
           <p class="page-kicker">Configuración</p>
           <h1 class="page-title mt-2">Sistema</h1>
-          <p class="mt-2 text-sm text-ink-500">Identidad del gimnasio y reglas de recepción</p>
+          <p class="mt-2 text-sm text-content-secondary">Identidad del gimnasio y reglas de recepción</p>
         </div>
       </header>
 
       <div class="grid gap-4 lg:grid-cols-[0.8fr_1.2fr]">
         <aside class="panel-card">
             <div class="flex items-center gap-4">
-              <div class="flex h-16 w-16 items-center justify-center overflow-hidden rounded-lg bg-forest-0 text-white">
+              <div class="flex h-16 w-16 items-center justify-center overflow-hidden rounded-lg bg-brand text-white">
               <img v-if="logoPreviewSrc" :src="logoPreviewSrc" alt="" class="h-full w-full object-cover" />
               <span v-else class="font-heading text-xl font-bold">{{ companyInitials }}</span>
             </div>
             <div class="min-w-0">
-              <p class="text-xs font-extrabold uppercase text-ink-500">Gimnasio</p>
-              <h2 class="truncate font-heading text-3xl font-bold uppercase text-ink-0">{{ companyForm.name || 'Sin nombre' }}</h2>
+              <p class="text-xs font-extrabold uppercase text-content-secondary">Gimnasio</p>
+              <h2 class="truncate font-heading text-3xl font-bold uppercase text-content">{{ companyForm.name || 'Sin nombre' }}</h2>
             </div>
           </div>
 
-          <div class="mt-5 rounded-lg border border-forest-100 bg-forest-100/70 p-4">
-            <p class="text-xs font-extrabold uppercase text-forest-900">Recepción</p>
-            <p class="mt-2 font-heading text-3xl font-bold uppercase text-forest-900">{{ duplicatePolicyLabel }}</p>
-            <p class="mt-1 text-sm text-forest-900">Regla para doble acceso diario</p>
+          <div class="mt-5 rounded-lg border border-accent bg-accent/70 p-4">
+            <p class="text-xs font-extrabold uppercase text-content">Recepción</p>
+            <p class="mt-2 font-heading text-3xl font-bold uppercase text-content">{{ duplicatePolicyLabel }}</p>
+            <p class="mt-1 text-sm text-content">Regla para doble acceso diario</p>
           </div>
 
           <div class="mt-5 grid gap-3">
@@ -38,39 +38,39 @@
 
         <section class="panel-card">
           <div class="mb-5">
-            <p class="text-xs font-extrabold uppercase text-ink-500">Datos operativos</p>
-            <h2 class="mt-1 font-heading text-3xl font-bold uppercase text-ink-0">Perfil del gimnasio</h2>
+            <p class="text-xs font-extrabold uppercase text-content-secondary">Datos operativos</p>
+            <h2 class="mt-1 font-heading text-3xl font-bold uppercase text-content">Perfil del gimnasio</h2>
           </div>
 
           <form class="space-y-4" @submit.prevent="saveCompany">
             <div class="grid gap-3 sm:grid-cols-2">
               <div>
-                <label for="settings-name" class="mb-1.5 block text-xs font-semibold uppercase text-ink-500">Nombre</label>
+                <label for="settings-name" class="mb-1.5 block text-xs font-semibold uppercase text-content-secondary">Nombre</label>
                 <input id="settings-name" v-model="companyForm.name" class="input-base" required />
               </div>
               <div>
-                <label for="settings-email" class="mb-1.5 block text-xs font-semibold uppercase text-ink-500">Email</label>
+                <label for="settings-email" class="mb-1.5 block text-xs font-semibold uppercase text-content-secondary">Email</label>
                 <input id="settings-email" v-model="companyForm.email" type="email" class="input-base" required />
               </div>
               <div>
-                <label for="settings-phone" class="mb-1.5 block text-xs font-semibold uppercase text-ink-500">Teléfono</label>
+                <label for="settings-phone" class="mb-1.5 block text-xs font-semibold uppercase text-content-secondary">Teléfono</label>
                 <input id="settings-phone" v-model="companyForm.phone" class="input-base" />
               </div>
               <div>
-                <label for="settings-city" class="mb-1.5 block text-xs font-semibold uppercase text-ink-500">Ciudad</label>
+                <label for="settings-city" class="mb-1.5 block text-xs font-semibold uppercase text-content-secondary">Ciudad</label>
                 <input id="settings-city" v-model="companyForm.city" class="input-base" />
               </div>
             </div>
 
             <div>
-              <label for="settings-address" class="mb-1.5 block text-xs font-semibold uppercase text-ink-500">Dirección</label>
+              <label for="settings-address" class="mb-1.5 block text-xs font-semibold uppercase text-content-secondary">Dirección</label>
               <input id="settings-address" v-model="companyForm.address" class="input-base" />
             </div>
 
-            <div class="rounded-lg border border-paper-300 bg-paper-100 p-4">
-              <p class="mb-2 text-xs font-semibold uppercase text-ink-500">Logo del gimnasio</p>
+            <div class="rounded-lg border border-border-strong bg-surface-muted p-4">
+              <p class="mb-2 text-xs font-semibold uppercase text-content-secondary">Logo del gimnasio</p>
               <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
-                <div class="flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-forest-0 text-white">
+                <div class="flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-brand text-white">
                   <img v-if="logoPreviewSrc" :src="logoPreviewSrc" alt="" class="h-full w-full object-cover" />
                   <span v-else class="font-heading text-xl font-bold">{{ companyInitials }}</span>
                 </div>
@@ -96,7 +96,7 @@
                       {{ uploadingLogo ? 'Subiendo...' : 'Subir logo' }}
                     </button>
                   </div>
-                  <p class="mt-2 truncate text-xs text-ink-500">
+                  <p class="mt-2 truncate text-xs text-content-secondary">
                     {{ selectedLogo ? selectedLogo.name : 'JPG, PNG, WEBP o GIF hasta 2 MB.' }}
                   </p>
                 </div>
@@ -104,7 +104,7 @@
             </div>
 
             <div>
-              <label for="settings-duplicate-policy" class="mb-1.5 block text-xs font-semibold uppercase text-ink-500">Doble acceso diario</label>
+              <label for="settings-duplicate-policy" class="mb-1.5 block text-xs font-semibold uppercase text-content-secondary">Doble acceso diario</label>
               <select id="settings-duplicate-policy" v-model="companyForm.checkin_duplicate_policy" class="input-base">
                 <option value="confirm">Pedir confirmación</option>
                 <option value="block">Bloquear</option>
@@ -112,8 +112,8 @@
               </select>
             </div>
 
-            <p v-if="companyMessage" class="rounded-lg border border-forest-100 bg-forest-100 px-3 py-2 text-sm font-semibold text-forest-900" aria-live="polite">{{ companyMessage }}</p>
-            <p v-if="companyError" class="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm font-semibold text-red-800" role="alert">{{ companyError }}</p>
+            <p v-if="companyMessage" class="rounded-lg border border-status-success/30 bg-status-success/10 px-3 py-2 text-sm font-semibold text-status-success" aria-live="polite">{{ companyMessage }}</p>
+            <p v-if="companyError" class="rounded-lg border border-status-danger/30 bg-status-danger/10 px-3 py-2 text-sm font-semibold text-status-danger" role="alert">{{ companyError }}</p>
 
             <div class="flex justify-end">
               <button class="btn-primary" :disabled="savingCompany">
@@ -158,9 +158,9 @@ const companyForm = ref({
 const InfoBlock = {
   props: ['label', 'value'],
   setup(props) {
-    return () => h('div', { class: 'rounded-lg border border-paper-300 bg-paper-100 px-3 py-3' }, [
-      h('p', { class: 'text-xs font-bold uppercase text-ink-500' }, props.label),
-      h('p', { class: 'mt-1 truncate text-sm font-semibold text-ink-0' }, props.value),
+    return () => h('div', { class: 'rounded-lg border border-border-strong bg-surface-muted px-3 py-3' }, [
+      h('p', { class: 'text-xs font-bold uppercase text-content-secondary' }, props.label),
+      h('p', { class: 'mt-1 truncate text-sm font-semibold text-content' }, props.value),
     ])
   },
 }

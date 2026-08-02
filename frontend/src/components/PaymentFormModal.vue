@@ -27,7 +27,7 @@
             <div
               v-if="memberResults.length"
               id="payment-member-results"
-              class="absolute z-10 mt-1 max-h-64 w-full overflow-y-auto rounded-lg border border-paper-300 bg-paper-0 shadow-xl"
+              class="absolute z-10 mt-1 max-h-64 w-full overflow-y-auto rounded-lg border border-border-strong bg-surface-elevated shadow-xl"
               role="listbox"
               aria-label="Resultados de socios"
             >
@@ -35,14 +35,14 @@
                 v-for="m in memberResults"
                 :key="m.id"
                 type="button"
-                class="w-full px-4 py-3 text-left text-sm transition-colors hover:bg-paper-100"
+                class="w-full px-4 py-3 text-left text-sm transition-colors hover:bg-surface-muted"
                 role="option"
                 :aria-selected="selectedMemberId === m.id"
                 @click="selectMember(m)"
               >
-                <span class="font-semibold text-ink-0">{{ m.first_name }} {{ m.last_name }}</span>
-                <span class="ml-2 text-xs text-ink-500">{{ m.dni || 'Sin DNI' }}</span>
-                <span v-if="m.plan_name" class="ml-2 text-xs font-semibold text-slate-800">{{ m.plan_name }}</span>
+                <span class="font-semibold text-content">{{ m.first_name }} {{ m.last_name }}</span>
+                <span class="ml-2 text-xs text-content-secondary">{{ m.dni || 'Sin DNI' }}</span>
+                <span v-if="m.plan_name" class="ml-2 text-xs font-semibold text-brand-dark">{{ m.plan_name }}</span>
               </button>
             </div>
           </div>
@@ -52,7 +52,7 @@
       <FormField id="payment-amount" label="Monto" required>
         <template #default="{ id, describedBy, invalid }">
           <div class="relative">
-            <span class="absolute left-3 top-1/2 -translate-y-1/2 font-medium text-ink-500">$</span>
+            <span class="absolute left-3 top-1/2 -translate-y-1/2 font-medium text-content-secondary">$</span>
             <input :id="id" v-model="form.amount" type="number" min="1" step="0.01" class="input-base pl-7" required placeholder="5000" :aria-describedby="describedBy" :aria-invalid="invalid || undefined" />
           </div>
         </template>
@@ -88,8 +88,8 @@
         </template>
       </FormField>
 
-      <div v-if="error" class="rounded-lg border border-red-200 bg-red-50 px-4 py-3" role="alert">
-        <p class="text-sm font-medium text-red-800">{{ error }}</p>
+      <div v-if="error" class="rounded-lg border border-status-danger/30 bg-status-danger/10 px-4 py-3" role="alert">
+        <p class="text-sm font-medium text-status-danger">{{ error }}</p>
       </div>
 
       <div class="flex flex-col-reverse gap-3 pt-1 sm:flex-row">

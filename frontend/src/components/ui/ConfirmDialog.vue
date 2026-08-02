@@ -6,7 +6,7 @@
     size="sm"
     @close="cancel"
   >
-    <p v-if="current.detail" class="rounded-lg border border-paper-300 bg-paper-100 px-4 py-3 text-sm text-ink-500">
+    <p v-if="current.detail" class="rounded-lg border border-border-strong bg-surface-muted px-4 py-3 text-sm text-content-secondary">
       {{ current.detail }}
     </p>
     <div class="mt-5 flex flex-col gap-2 sm:flex-row sm:justify-end">

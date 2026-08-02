@@ -5,11 +5,11 @@
         <div>
           <p class="page-kicker">Análisis operativo</p>
           <h1 class="page-title mt-2">Reportes</h1>
-          <p class="mt-2 text-sm text-ink-500">{{ periodLabel }}</p>
+          <p class="mt-2 text-sm text-content-secondary">{{ periodLabel }}</p>
         </div>
 
         <div class="flex flex-wrap items-center gap-2">
-          <span class="rounded-lg border border-paper-200 bg-paper-0 px-3 py-2 text-xs font-bold uppercase text-ink-500">
+          <span class="rounded-lg border border-border bg-surface-elevated px-3 py-2 text-xs font-bold uppercase text-content-secondary">
             Vista gerencial
           </span>
           <button class="btn-ghost inline-flex items-center gap-2 text-sm" type="button" @click="refresh">
@@ -20,74 +20,74 @@
       </header>
 
       <div v-if="loading && !metrics" class="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-4">
-        <div v-for="i in 4" :key="i" class="h-36 animate-pulse rounded-lg border border-paper-200 bg-paper-0"></div>
+        <div v-for="i in 4" :key="i" class="h-36 animate-pulse rounded-lg border border-border bg-surface-elevated"></div>
       </div>
 
       <div v-else class="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-4">
         <RouterLink to="/payments" class="report-kpi kpi-dark" :aria-label="`Ingresos del mes: ${compactCurrency(currentRevenue)}. ${revenueTrendLabel}`">
           <div class="relative z-10">
             <div class="flex items-start justify-between gap-3">
-              <p class="text-xs font-extrabold uppercase text-paper-300">Ingresos del mes</p>
-              <IconMoney class="h-5 w-5 text-timber-0" />
+              <p class="text-xs font-extrabold uppercase text-content-inverse/75">Ingresos del mes</p>
+              <IconMoney class="h-5 w-5 text-accent" />
             </div>
-            <p class="mt-5 font-heading text-5xl font-bold leading-none text-timber-0">{{ compactCurrency(currentRevenue) }}</p>
-            <p class="mt-3 text-sm font-semibold text-timber-100">{{ revenueTrendLabel }}</p>
+            <p class="mt-5 font-heading text-5xl font-bold leading-none text-accent">{{ compactCurrency(currentRevenue) }}</p>
+            <p class="mt-3 text-sm font-semibold text-accent-soft">{{ revenueTrendLabel }}</p>
           </div>
         </RouterLink>
 
         <RouterLink to="/members" class="report-kpi kpi-velvet" :aria-label="`Socios activos: ${pad(activeMembers)}. ${members.new_this_month || 0} altas este mes.`">
           <div class="relative z-10">
             <div class="flex items-start justify-between gap-3">
-              <p class="text-xs font-extrabold uppercase text-slate-100">Socios activos</p>
-              <IconMembers class="h-5 w-5 text-timber-0" />
+              <p class="text-xs font-extrabold uppercase text-brand-soft">Socios activos</p>
+              <IconMembers class="h-5 w-5 text-accent" />
             </div>
-            <p class="mt-5 font-heading text-5xl font-bold leading-none text-timber-0">{{ pad(activeMembers) }}</p>
-            <p class="mt-3 text-sm font-semibold text-slate-100">{{ members.new_this_month || 0 }} altas este mes</p>
+            <p class="mt-5 font-heading text-5xl font-bold leading-none text-accent">{{ pad(activeMembers) }}</p>
+            <p class="mt-3 text-sm font-semibold text-brand-soft">{{ members.new_this_month || 0 }} altas este mes</p>
           </div>
         </RouterLink>
 
         <RouterLink to="/members" class="report-kpi kpi-light" :aria-label="`Cuotas vigentes: ${Math.round(quotaRatio)} por ciento. ${members.quota_ok || 0} socios al día.`">
           <div class="relative z-10">
             <div class="flex items-start justify-between gap-3">
-              <p class="text-xs font-extrabold uppercase text-ink-500">Cuotas vigentes</p>
-              <IconShield class="h-5 w-5 text-slate-0" />
+              <p class="text-xs font-extrabold uppercase text-content-secondary">Cuotas vigentes</p>
+              <IconShield class="h-5 w-5 text-status-success" />
             </div>
-            <p class="mt-5 font-heading text-5xl font-bold leading-none text-ink-0">{{ Math.round(quotaRatio) }}%</p>
-            <p class="mt-3 text-sm font-semibold text-slate-800">{{ members.quota_ok || 0 }} socios al día</p>
+            <p class="mt-5 font-heading text-5xl font-bold leading-none text-content">{{ Math.round(quotaRatio) }}%</p>
+            <p class="mt-3 text-sm font-semibold text-status-success">{{ members.quota_ok || 0 }} socios al día</p>
           </div>
         </RouterLink>
 
         <RouterLink to="/checkins" class="report-kpi kpi-light" :aria-label="`Accesos semana: ${pad(checkins.this_week || 0)}. ${averageDailyCheckins} promedio diario.`">
           <div class="relative z-10">
             <div class="flex items-start justify-between gap-3">
-              <p class="text-xs font-extrabold uppercase text-ink-500">Accesos semana</p>
-              <IconCheckin class="h-5 w-5 text-slate-0" />
+              <p class="text-xs font-extrabold uppercase text-content-secondary">Accesos semana</p>
+              <IconCheckin class="h-5 w-5 text-status-success" />
             </div>
-            <p class="mt-5 font-heading text-5xl font-bold leading-none text-ink-0">{{ pad(checkins.this_week || 0) }}</p>
-            <p class="mt-3 text-sm font-semibold text-slate-800">{{ averageDailyCheckins }} promedio diario</p>
+            <p class="mt-5 font-heading text-5xl font-bold leading-none text-content">{{ pad(checkins.this_week || 0) }}</p>
+            <p class="mt-3 text-sm font-semibold text-status-success">{{ averageDailyCheckins }} promedio diario</p>
           </div>
         </RouterLink>
       </div>
 
-      <section class="rounded-lg border border-forest-700 bg-forest-900 p-5 text-timber-0 shadow-[0_18px_46px_rgba(21,19,17,0.20)] sm:p-6">
+      <section class="rounded-lg border border-border-dark bg-sidebar p-5 text-accent shadow-[0_18px_46px_rgba(21,19,17,0.20)] sm:p-6">
         <div class="grid gap-5 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
           <div>
-            <p class="text-xs font-extrabold uppercase text-paper-300">Lectura rápida</p>
+            <p class="text-xs font-extrabold uppercase text-content-inverse/75">Lectura rápida</p>
             <h2 class="mt-2 font-heading text-3xl font-bold uppercase leading-tight lg:text-4xl">{{ executiveTitle }}</h2>
-            <p class="mt-3 max-w-3xl text-sm leading-6 text-paper-300">{{ executiveSummary }}</p>
+            <p class="mt-3 max-w-3xl text-sm leading-6 text-content-inverse/75">{{ executiveSummary }}</p>
           </div>
           <div class="grid grid-cols-3 gap-2">
-            <div class="rounded-lg border border-forest-700 bg-forest-800 px-3 py-4">
-              <p class="text-xs font-bold uppercase text-paper-300">Mora</p>
-              <p class="mt-2 font-heading text-3xl font-bold text-timber-0">{{ Math.round(debtRatio) }}%</p>
+            <div class="rounded-lg border border-border-dark bg-sidebar-elevated px-3 py-4">
+              <p class="text-xs font-bold uppercase text-content-inverse/75">Mora</p>
+              <p class="mt-2 font-heading text-3xl font-bold text-accent">{{ Math.round(debtRatio) }}%</p>
             </div>
-            <div class="rounded-lg border border-forest-700 bg-forest-800 px-3 py-4">
-              <p class="text-xs font-bold uppercase text-paper-300">Ticket</p>
-              <p class="mt-2 font-heading text-3xl font-bold text-timber-0">{{ compactCurrency(averageTicket) }}</p>
+            <div class="rounded-lg border border-border-dark bg-sidebar-elevated px-3 py-4">
+              <p class="text-xs font-bold uppercase text-content-inverse/75">Ticket</p>
+              <p class="mt-2 font-heading text-3xl font-bold text-accent">{{ compactCurrency(averageTicket) }}</p>
             </div>
-            <div class="rounded-lg border border-forest-700 bg-forest-800 px-3 py-4">
-              <p class="text-xs font-bold uppercase text-paper-300">Pico</p>
-              <p class="mt-2 font-heading text-3xl font-bold text-timber-0">{{ peakDay.label }}</p>
+            <div class="rounded-lg border border-border-dark bg-sidebar-elevated px-3 py-4">
+              <p class="text-xs font-bold uppercase text-content-inverse/75">Pico</p>
+              <p class="mt-2 font-heading text-3xl font-bold text-accent">{{ peakDay.label }}</p>
             </div>
           </div>
         </div>
@@ -97,25 +97,25 @@
         <article class="report-panel">
           <div class="mb-6 flex items-start justify-between gap-4">
             <div>
-              <p class="text-xs font-extrabold uppercase text-ink-500">Ingresos</p>
-              <h2 class="mt-1 font-heading text-3xl font-bold uppercase text-ink-0">Últimos 6 meses</h2>
+              <p class="text-xs font-extrabold uppercase text-content-secondary">Ingresos</p>
+              <h2 class="mt-1 font-heading text-3xl font-bold uppercase text-content">Últimos 6 meses</h2>
             </div>
-            <span class="rounded-md bg-slate-100 px-3 py-1 text-xs font-bold uppercase text-slate-800">
+            <span class="rounded-md bg-brand-soft px-3 py-1 text-xs font-bold uppercase text-brand-dark">
               Mejor: {{ bestMonth.label }}
             </span>
           </div>
 
-          <div class="report-chart-grid flex h-80 items-end gap-3 rounded-lg bg-paper-100 p-4" role="img" :aria-label="`Gráfico de ingresos de los últimos seis meses. Mejor mes ${bestMonth.label}.`">
+          <div class="report-chart-grid flex h-80 items-end gap-3 rounded-lg bg-surface-muted p-4" role="img" :aria-label="`Gráfico de ingresos de los últimos seis meses. Mejor mes ${bestMonth.label}.`">
             <div v-for="month in revenueChart" :key="month.month" class="flex h-full flex-1 flex-col justify-end gap-3">
-              <div class="flex flex-1 items-end rounded-md bg-paper-0/85 p-1">
+              <div class="flex flex-1 items-end rounded-md bg-surface-elevated/85 p-1">
                 <div
-                  class="w-full rounded-md bg-slate-0 transition-all duration-500"
+                  class="w-full rounded-md bg-brand transition-all duration-500"
                   :style="{ height: `${barHeight(month.total, maxRevenue)}%` }"
                 ></div>
               </div>
               <div class="text-center">
-                <p class="text-xs font-bold text-ink-0">{{ compactCurrency(month.total) }}</p>
-                <p class="text-xs font-bold uppercase text-ink-500">{{ formatMonthLabel(month.month) }}</p>
+                <p class="text-xs font-bold text-content">{{ compactCurrency(month.total) }}</p>
+                <p class="text-xs font-bold uppercase text-content-secondary">{{ formatMonthLabel(month.month) }}</p>
               </div>
             </div>
           </div>
@@ -124,28 +124,28 @@
         <article class="report-panel">
           <div class="mb-6 flex items-start justify-between gap-4">
             <div>
-              <p class="text-xs font-extrabold uppercase text-ink-500">Asistencia</p>
-              <h2 class="mt-1 font-heading text-3xl font-bold uppercase text-ink-0">Ritmo semanal</h2>
+              <p class="text-xs font-extrabold uppercase text-content-secondary">Asistencia</p>
+              <h2 class="mt-1 font-heading text-3xl font-bold uppercase text-content">Ritmo semanal</h2>
             </div>
-            <span class="rounded-md bg-forest-100 px-3 py-1 text-xs font-bold uppercase text-forest-900">
+            <span class="rounded-md bg-status-success/15 px-3 py-1 text-xs font-bold uppercase text-status-success">
               {{ attendanceTotal }} accesos
             </span>
           </div>
 
-          <div class="relative rounded-lg bg-paper-100 p-4" role="img" :aria-label="`Gráfico de asistencia semanal con ${attendanceTotal} accesos.`">
-            <div v-if="!attendanceTotal" class="mb-4 rounded-md border border-paper-200 bg-paper-0 px-4 py-3 text-sm font-semibold text-ink-500">
+          <div class="relative rounded-lg bg-surface-muted p-4" role="img" :aria-label="`Gráfico de asistencia semanal con ${attendanceTotal} accesos.`">
+            <div v-if="!attendanceTotal" class="mb-4 rounded-md border border-border bg-surface-elevated px-4 py-3 text-sm font-semibold text-content-secondary">
               Los check-ins aparecerán acá cuando se registren accesos.
             </div>
             <div class="grid gap-3">
               <div v-for="day in checkinChart" :key="day.date" class="grid grid-cols-[44px_1fr_42px] items-center gap-3">
-                <span class="text-xs font-bold uppercase text-ink-500">{{ formatDayLabel(day.date) }}</span>
-                <div class="h-3 overflow-hidden rounded-full bg-paper-0">
+                <span class="text-xs font-bold uppercase text-content-secondary">{{ formatDayLabel(day.date) }}</span>
+                <div class="h-3 overflow-hidden rounded-full bg-surface-elevated">
                   <div
-                    class="h-full rounded-full bg-forest-0 transition-all duration-500"
+                    class="h-full rounded-full bg-status-success transition-all duration-500"
                     :style="{ width: `${barHeight(day.count, maxCheckins)}%` }"
                   ></div>
                 </div>
-                <span class="text-right font-heading text-lg font-bold text-ink-0">{{ day.count }}</span>
+                <span class="text-right font-heading text-lg font-bold text-content">{{ day.count }}</span>
               </div>
             </div>
           </div>
@@ -155,36 +155,36 @@
       <div class="grid grid-cols-1 gap-4 xl:grid-cols-[0.95fr_1.05fr]">
         <article class="report-panel">
           <div class="mb-5">
-            <p class="text-xs font-extrabold uppercase text-ink-500">Socios</p>
-            <h2 class="mt-1 font-heading text-3xl font-bold uppercase text-ink-0">Salud de cartera</h2>
+            <p class="text-xs font-extrabold uppercase text-content-secondary">Socios</p>
+            <h2 class="mt-1 font-heading text-3xl font-bold uppercase text-content">Salud de cartera</h2>
           </div>
 
           <div class="space-y-4">
             <div>
               <div class="mb-2 flex items-center justify-between text-sm font-bold">
-                <span class="text-ink-0">Cuota vigente</span>
-                <span class="text-forest-900">{{ members.quota_ok || 0 }}</span>
+                <span class="text-content">Cuota vigente</span>
+                <span class="text-status-success">{{ members.quota_ok || 0 }}</span>
               </div>
-              <div class="h-3 overflow-hidden rounded-full bg-paper-100">
-                <div class="h-full rounded-full bg-forest-0" :style="{ width: `${quotaRatio}%` }"></div>
-              </div>
-            </div>
-            <div>
-              <div class="mb-2 flex items-center justify-between text-sm font-bold">
-                <span class="text-ink-0">En mora</span>
-                <span class="text-slate-800">{{ members.in_debt || 0 }}</span>
-              </div>
-              <div class="h-3 overflow-hidden rounded-full bg-paper-100">
-                <div class="h-full rounded-full bg-slate-0" :style="{ width: `${debtRatio}%` }"></div>
+              <div class="h-3 overflow-hidden rounded-full bg-surface-muted">
+                <div class="h-full rounded-full bg-status-success" :style="{ width: `${quotaRatio}%` }"></div>
               </div>
             </div>
             <div>
               <div class="mb-2 flex items-center justify-between text-sm font-bold">
-                <span class="text-ink-0">Inactivos</span>
-                <span class="text-ink-500">{{ members.total_inactive || 0 }}</span>
+                <span class="text-content">En mora</span>
+                <span class="text-status-danger">{{ members.in_debt || 0 }}</span>
               </div>
-              <div class="h-3 overflow-hidden rounded-full bg-paper-100">
-                <div class="h-full rounded-full bg-paper-300" :style="{ width: `${inactiveRatio}%` }"></div>
+              <div class="h-3 overflow-hidden rounded-full bg-surface-muted">
+                <div class="h-full rounded-full bg-status-danger" :style="{ width: `${debtRatio}%` }"></div>
+              </div>
+            </div>
+            <div>
+              <div class="mb-2 flex items-center justify-between text-sm font-bold">
+                <span class="text-content">Inactivos</span>
+                <span class="text-content-secondary">{{ members.total_inactive || 0 }}</span>
+              </div>
+              <div class="h-3 overflow-hidden rounded-full bg-surface-muted">
+                <div class="h-full rounded-full bg-border-strong" :style="{ width: `${inactiveRatio}%` }"></div>
               </div>
             </div>
           </div>
@@ -192,8 +192,8 @@
 
         <article class="report-panel">
           <div class="mb-5">
-            <p class="text-xs font-extrabold uppercase text-ink-500">Prioridades</p>
-            <h2 class="mt-1 font-heading text-3xl font-bold uppercase text-ink-0">Acciones sugeridas</h2>
+            <p class="text-xs font-extrabold uppercase text-content-secondary">Prioridades</p>
+            <h2 class="mt-1 font-heading text-3xl font-bold uppercase text-content">Acciones sugeridas</h2>
           </div>
 
           <div class="grid gap-3">
@@ -201,12 +201,12 @@
               v-for="item in actionItems"
               :key="item.title"
               :to="item.to"
-              class="group rounded-lg border border-paper-200 bg-paper-100 p-4 transition hover:-translate-y-0.5 hover:border-slate-0 hover:bg-paper-0"
+              class="group rounded-lg border border-border bg-surface-muted p-4 transition hover:-translate-y-0.5 hover:border-brand hover:bg-surface-elevated"
             >
               <div class="flex items-start justify-between gap-4">
                 <div>
-                  <p class="font-heading text-xl font-bold uppercase text-ink-0">{{ item.title }}</p>
-                  <p class="mt-1 text-sm text-ink-500">{{ item.detail }}</p>
+                  <p class="font-heading text-xl font-bold uppercase text-content">{{ item.title }}</p>
+                  <p class="mt-1 text-sm text-content-secondary">{{ item.detail }}</p>
                 </div>
                 <span class="rounded-md px-2.5 py-1 text-xs font-bold uppercase" :class="item.badgeClass">{{ item.value }}</span>
               </div>
@@ -321,21 +321,21 @@ const actionItems = computed(() => [
     title: 'Revisar socios en mora',
     detail: 'Priorizar contactos y regularización de cuotas vencidas.',
     value: members.value.in_debt || 0,
-    badgeClass: 'bg-slate-100 text-slate-800',
+    badgeClass: 'bg-status-danger/10 text-status-danger',
     to: '/members?quota=debt',
   },
   {
     title: 'Impulsar accesos',
     detail: 'Controlar movimiento semanal y registrar entradas en recepción.',
     value: checkins.value.this_week || 0,
-    badgeClass: 'bg-forest-100 text-forest-900',
+    badgeClass: 'bg-status-success/15 text-status-success',
     to: '/checkins',
   },
   {
     title: 'Auditar caja mensual',
     detail: 'Verificar cuotas cargadas, métodos y periodos de membresía.',
     value: paymentsCount.value,
-    badgeClass: 'bg-timber-100 text-timber-800',
+    badgeClass: 'bg-status-info/10 text-status-info',
     to: '/payments',
   },
 ])
@@ -442,16 +442,16 @@ function IconCheckin(props = {}) {
   background-image: linear-gradient(135deg, rgba(238,211,186,0.10), transparent 44%);
 }
 .kpi-dark {
-  @apply border-forest-700 bg-forest-900;
+  @apply border-border-dark bg-sidebar;
 }
 .kpi-velvet {
-  @apply border-slate-800 bg-slate-0;
+  @apply border-brand-dark bg-brand;
 }
 .kpi-light {
-  @apply border-paper-200 bg-paper-0;
+  @apply border-border bg-surface-elevated;
 }
 .report-panel {
-  @apply rounded-lg border border-paper-200 bg-paper-0 p-5 shadow-[0_10px_28px_rgba(21,19,17,0.065)] sm:p-6;
+  @apply rounded-lg border border-border bg-surface-elevated p-5 shadow-[0_10px_28px_rgba(21,19,17,0.065)] sm:p-6;
 }
 .report-chart-grid {
   background-image: linear-gradient(to top, rgba(21,19,17,0.045) 1px, transparent 1px);

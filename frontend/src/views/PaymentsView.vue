@@ -5,7 +5,7 @@
         <div>
           <p class="page-kicker">Caja</p>
           <h1 class="page-title mt-2">Cuotas</h1>
-          <p class="mt-2 text-sm text-ink-500">{{ currentMonthLabel }}</p>
+          <p class="mt-2 text-sm text-content-secondary">{{ currentMonthLabel }}</p>
         </div>
         <button @click="showModal = true" class="btn-primary inline-flex items-center gap-2 self-start">
           <IconPlus class="h-4 w-4" />
@@ -14,45 +14,45 @@
       </header>
 
       <div class="mb-5 grid grid-cols-1 gap-3 sm:grid-cols-3">
-        <article class="metric-tile border-t-4 border-t-forest-0">
+        <article class="metric-tile border-t-4 border-t-brand">
           <div class="relative z-10">
-            <p class="text-xs font-extrabold uppercase text-ink-500">Ingresos del periodo</p>
-            <p class="mt-3 font-heading text-4xl font-bold text-ink-0">{{ compactCurrency(store.totalAmount) }}</p>
-            <p class="mt-2 text-sm font-semibold text-forest-900">Total recaudado</p>
+            <p class="text-xs font-extrabold uppercase text-content-secondary">Ingresos del periodo</p>
+            <p class="mt-3 font-heading text-4xl font-bold text-content">{{ compactCurrency(store.totalAmount) }}</p>
+            <p class="mt-2 text-sm font-semibold text-content">Total recaudado</p>
           </div>
         </article>
-        <article class="metric-tile border-t-4 border-t-slate-0">
+        <article class="metric-tile border-t-4 border-t-status-info">
           <div class="relative z-10">
-            <p class="text-xs font-extrabold uppercase text-ink-500">Cuotas registradas</p>
-            <p class="mt-3 font-heading text-4xl font-bold text-ink-0">{{ pad(store.meta.total) }}</p>
-            <p class="mt-2 text-sm font-semibold text-slate-800">Movimientos cargados</p>
+            <p class="text-xs font-extrabold uppercase text-content-secondary">Cuotas registradas</p>
+            <p class="mt-3 font-heading text-4xl font-bold text-content">{{ pad(store.meta.total) }}</p>
+            <p class="mt-2 text-sm font-semibold text-brand-dark">Movimientos cargados</p>
           </div>
         </article>
-        <article class="metric-tile border-t-4 border-t-timber-0">
+        <article class="metric-tile border-t-4 border-t-accent">
           <div class="relative z-10">
-            <p class="text-xs font-extrabold uppercase text-ink-500">Ticket promedio</p>
-            <p class="mt-3 font-heading text-4xl font-bold text-ink-0">{{ compactCurrency(averageTicket) }}</p>
-            <p class="mt-2 text-sm font-semibold text-timber-800">Por cuota</p>
+            <p class="text-xs font-extrabold uppercase text-content-secondary">Ticket promedio</p>
+            <p class="mt-3 font-heading text-4xl font-bold text-content">{{ compactCurrency(averageTicket) }}</p>
+            <p class="mt-2 text-sm font-semibold text-brand">Por cuota</p>
           </div>
         </article>
       </div>
 
       <section class="panel-card mb-4">
         <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
-          <div class="flex items-center gap-2 rounded-lg border border-paper-300 bg-paper-100 px-3 py-2">
-            <IconCalendar class="h-4 w-4 text-ink-500" />
+          <div class="flex items-center gap-2 rounded-lg border border-border-strong bg-surface-muted px-3 py-2">
+            <IconCalendar class="h-4 w-4 text-content-secondary" />
             <label for="payments-month" class="sr-only">Mes</label>
-            <select id="payments-month" v-model="selectedMonth" @change="load(1)" class="bg-transparent text-sm font-semibold text-ink-0 focus:outline-none">
+            <select id="payments-month" v-model="selectedMonth" @change="load(1)" class="bg-transparent text-sm font-semibold text-content focus:outline-none">
               <option v-for="month in months" :key="month.value" :value="month.value">{{ month.label }}</option>
             </select>
             <label for="payments-year" class="sr-only">Año</label>
-            <select id="payments-year" v-model="selectedYear" @change="load(1)" class="bg-transparent text-sm font-semibold text-ink-0 focus:outline-none">
+            <select id="payments-year" v-model="selectedYear" @change="load(1)" class="bg-transparent text-sm font-semibold text-content focus:outline-none">
               <option v-for="year in years" :key="year" :value="year">{{ year }}</option>
             </select>
           </div>
-          <label for="payments-page-size" class="flex items-center gap-2 rounded-lg border border-paper-300 bg-paper-100 px-3 py-2 text-sm text-ink-500">
+          <label for="payments-page-size" class="flex items-center gap-2 rounded-lg border border-border-strong bg-surface-muted px-3 py-2 text-sm text-content-secondary">
             <span>Por página</span>
-            <select id="payments-page-size" v-model.number="pageSize" @change="changePageSize" class="bg-transparent font-semibold text-ink-0 focus:outline-none">
+            <select id="payments-page-size" v-model.number="pageSize" @change="changePageSize" class="bg-transparent font-semibold text-content focus:outline-none">
               <option v-for="size in pageSizeOptions" :key="size" :value="size">{{ size }}</option>
             </select>
           </label>
@@ -60,14 +60,14 @@
       </section>
 
       <div v-if="store.loading" class="space-y-2">
-        <div v-for="i in 6" :key="i" class="glass-card h-16 animate-pulse bg-paper-100"></div>
+        <div v-for="i in 6" :key="i" class="surface-card h-16 animate-pulse bg-surface-muted"></div>
       </div>
 
-      <section v-else-if="store.payments.length" class="glass-card overflow-hidden">
+      <section v-else-if="store.payments.length" class="surface-card overflow-hidden">
         <div class="hidden overflow-x-auto md:block">
           <table class="w-full min-w-[860px] text-sm">
             <thead>
-              <tr class="border-b border-paper-300 bg-paper-100">
+              <tr class="border-b border-border-strong bg-surface-muted">
                 <th class="table-head-cell">Socio</th>
                 <th class="table-head-cell">Concepto</th>
                 <th class="table-head-cell">Fecha</th>
@@ -77,51 +77,51 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="payment in store.payments" :key="payment.id" class="border-b border-paper-300 transition hover:bg-paper-100">
+              <tr v-for="payment in store.payments" :key="payment.id" class="border-b border-border-strong transition hover:bg-surface-muted">
                 <td class="table-body-cell">
-                  <p class="font-semibold text-ink-0">{{ payment.member_name }}</p>
+                  <p class="font-semibold text-content">{{ payment.member_name }}</p>
                 </td>
-                <td class="table-body-cell text-ink-500">{{ payment.concept }}</td>
-                <td class="table-body-cell text-ink-500">{{ formatDate(payment.payment_date) }}</td>
-                <td class="table-body-cell text-ink-500">{{ periodLabel(payment) }}</td>
+                <td class="table-body-cell text-content-secondary">{{ payment.concept }}</td>
+                <td class="table-body-cell text-content-secondary">{{ formatDate(payment.payment_date) }}</td>
+                <td class="table-body-cell text-content-secondary">{{ periodLabel(payment) }}</td>
                 <td class="table-body-cell">
                   <span class="inline-flex rounded-md px-2.5 py-0.5 text-xs font-bold uppercase" :class="methodClass(payment.method)">
                     {{ payment.legacy_method_name || methodLabel(payment.method) }}
                   </span>
                 </td>
                 <td class="table-body-cell text-right">
-                  <span class="font-heading text-xl font-bold text-forest-900">{{ formatCurrency(payment.amount) }}</span>
+                  <span class="font-heading text-xl font-bold text-content">{{ formatCurrency(payment.amount) }}</span>
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
 
-        <div class="divide-y divide-paper-300 md:hidden">
+        <div class="divide-y divide-border-strong md:hidden">
           <article v-for="payment in store.payments" :key="payment.id" class="flex items-center gap-3 p-4">
-            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-forest-100 text-forest-900">
+            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-accent text-content">
               <IconMoney class="h-4 w-4" />
             </div>
             <div class="min-w-0 flex-1">
-              <p class="truncate text-sm font-semibold text-ink-0">{{ payment.member_name }}</p>
-              <p class="text-xs text-ink-500">{{ payment.concept }} - {{ formatDate(payment.payment_date) }}</p>
-              <p v-if="payment.period_start || payment.period_end" class="text-xs text-ink-500">{{ periodLabel(payment) }}</p>
+              <p class="truncate text-sm font-semibold text-content">{{ payment.member_name }}</p>
+              <p class="text-xs text-content-secondary">{{ payment.concept }} - {{ formatDate(payment.payment_date) }}</p>
+              <p v-if="payment.period_start || payment.period_end" class="text-xs text-content-secondary">{{ periodLabel(payment) }}</p>
             </div>
             <div class="text-right">
-              <p class="font-heading text-lg font-bold text-forest-900">{{ formatCurrency(payment.amount) }}</p>
+              <p class="font-heading text-lg font-bold text-content">{{ formatCurrency(payment.amount) }}</p>
               <span class="text-xs font-semibold" :class="methodTextClass(payment.method)">{{ payment.legacy_method_name || methodLabel(payment.method) }}</span>
             </div>
           </article>
         </div>
       </section>
 
-      <section v-else class="glass-card px-6 py-12 text-center">
-        <IconMoney class="mx-auto h-12 w-12 text-ink-500" />
-        <p class="mt-4 text-sm font-medium text-ink-500">No hay cuotas en este periodo</p>
+      <section v-else class="surface-card px-6 py-12 text-center">
+        <IconMoney class="mx-auto h-12 w-12 text-content-secondary" />
+        <p class="mt-4 text-sm font-medium text-content-secondary">No hay cuotas en este periodo</p>
       </section>
 
       <div v-if="store.payments.length" class="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <p class="text-sm text-ink-500">Página {{ store.meta.page }} de {{ store.meta.pages || 1 }} - {{ store.meta.total }} cuotas</p>
+        <p class="text-sm text-content-secondary">Página {{ store.meta.page }} de {{ store.meta.pages || 1 }} - {{ store.meta.total }} cuotas</p>
         <div class="flex gap-2">
           <button @click="changePage(store.meta.page - 1)" :disabled="store.meta.page <= 1" class="btn-ghost px-3 py-1.5 text-sm disabled:opacity-30">Anterior</button>
           <button @click="changePage(store.meta.page + 1)" :disabled="store.meta.page >= (store.meta.pages || 1)" class="btn-ghost px-3 py-1.5 text-sm disabled:opacity-30">Siguiente</button>
@@ -222,20 +222,20 @@ function methodLabel(method) {
 
 function methodClass(method) {
   return {
-    cash: 'bg-timber-100 text-timber-800',
-    transfer: 'bg-slate-100 text-slate-800',
-    card: 'bg-forest-100 text-forest-900',
-    other: 'bg-paper-200 text-ink-500',
-  }[method] || 'bg-paper-200 text-ink-500'
+    cash: 'bg-accent-soft text-brand',
+    transfer: 'bg-brand-soft text-brand-dark',
+    card: 'bg-accent text-content',
+    other: 'bg-surface-strong text-content-secondary',
+  }[method] || 'bg-surface-strong text-content-secondary'
 }
 
 function methodTextClass(method) {
   return {
-    cash: 'text-timber-800',
-    transfer: 'text-slate-800',
-    card: 'text-forest-900',
-    other: 'text-ink-500',
-  }[method] || 'text-ink-500'
+    cash: 'text-brand',
+    transfer: 'text-brand-dark',
+    card: 'text-content',
+    other: 'text-content-secondary',
+  }[method] || 'text-content-secondary'
 }
 
 function icon(paths, attrs = {}) {

@@ -4,13 +4,13 @@
       <div class="login-form-panel">
         <div class="login-form-inner">
           <div>
-            <h1 class="text-6xl font-bold tracking-normal text-ink-0">Ingreso</h1>
-            <p class="mt-3 text-lg font-medium text-ink-500">Ingresá tus credenciales para acceder</p>
+            <h1 class="text-6xl font-bold tracking-normal text-content">Ingreso</h1>
+            <p class="mt-3 text-lg font-medium text-content-secondary">Ingresá tus credenciales para acceder</p>
           </div>
 
           <form @submit.prevent="handleLogin" class="space-y-5">
             <div>
-              <label for="login-email" class="mb-2 block text-base font-semibold text-ink-0">Email</label>
+              <label for="login-email" class="mb-2 block text-base font-semibold text-content">Email</label>
               <input
                 id="login-email"
                 v-model="form.email"
@@ -23,7 +23,7 @@
             </div>
 
             <div>
-              <label for="login-password" class="mb-2 block text-base font-semibold text-ink-0">Contraseña</label>
+              <label for="login-password" class="mb-2 block text-base font-semibold text-content">Contraseña</label>
               <div class="relative">
                 <input
                   id="login-password"
@@ -37,7 +37,7 @@
                 <button
                   type="button"
                   @click="showPass = !showPass"
-                  class="absolute right-3 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-md text-ink-500 transition hover:bg-paper-0 hover:text-ink-0"
+                  class="absolute right-3 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-md text-content-secondary transition hover:bg-surface-elevated hover:text-content"
                   :aria-label="showPass ? 'Ocultar contraseña' : 'Mostrar contraseña'"
                 >
                   <IconEyeOff v-if="showPass" />
@@ -47,8 +47,8 @@
             </div>
 
             <Transition name="fade">
-              <div v-if="error" class="rounded-lg border border-red-200 bg-red-50 px-4 py-3" role="alert">
-                <p class="text-sm font-medium text-red-800">{{ error }}</p>
+              <div v-if="error" class="rounded-lg border border-status-danger/30 bg-status-danger/10 px-4 py-3" role="alert">
+                <p class="text-sm font-medium text-status-danger">{{ error }}</p>
               </div>
             </Transition>
 
@@ -66,16 +66,16 @@
 
           <div class="login-feature-grid">
             <div>
-              <p class="text-lg font-black text-ink-0">Socios</p>
-              <p class="mt-1 text-xs font-semibold uppercase text-ink-500">Estado y vigencia</p>
+              <p class="text-lg font-black text-content">Socios</p>
+              <p class="mt-1 text-xs font-semibold uppercase text-content-secondary">Estado y vigencia</p>
             </div>
             <div>
-              <p class="text-lg font-black text-ink-0">Caja</p>
-              <p class="mt-1 text-xs font-semibold uppercase text-ink-500">Cuotas y pagos</p>
+              <p class="text-lg font-black text-content">Caja</p>
+              <p class="mt-1 text-xs font-semibold uppercase text-content-secondary">Cuotas y pagos</p>
             </div>
             <div>
-              <p class="text-lg font-black text-ink-0">Accesos</p>
-              <p class="mt-1 text-xs font-semibold uppercase text-ink-500">Recepción diaria</p>
+              <p class="text-lg font-black text-content">Accesos</p>
+              <p class="mt-1 text-xs font-semibold uppercase text-content-secondary">Recepción diaria</p>
             </div>
           </div>
         </div>
@@ -165,7 +165,7 @@ async function handleLogin() {
   background:
     linear-gradient(rgba(21, 19, 17, 0.10), rgba(21, 19, 17, 0.22)),
     url('/background.jpg') center / cover no-repeat;
-  color: #151311;
+  color: theme('colors.content.DEFAULT');
 }
 
 .login-shell {
@@ -186,7 +186,7 @@ async function handleLogin() {
   align-items: center;
   justify-content: center;
   padding: clamp(42px, 5vw, 72px);
-  background: #F8EDE1;
+  background: theme('colors.surface.canvas');
 }
 
 .login-form-inner {
@@ -208,7 +208,7 @@ async function handleLogin() {
 .login-feature-grid > div {
   min-width: 0;
   border-radius: 12px;
-  background: #F3E1CF;
+  background: theme('colors.accent.soft');
   padding: 14px 12px;
 }
 
@@ -261,10 +261,10 @@ async function handleLogin() {
   width: 100%;
   border-radius: 8px;
   border: 1px solid transparent;
-  background: #F3E1CF;
+  background: theme('colors.accent.soft');
   min-height: 56px;
   padding: 15px 18px;
-  color: #151311;
+  color: theme('colors.content.DEFAULT');
   font-size: 16px;
   font-weight: 500;
   outline: none;
@@ -276,8 +276,8 @@ async function handleLogin() {
 }
 
 .login-input:focus {
-  border-color: #151311;
-  background: #F7E8D8;
+  border-color: theme('colors.brand.DEFAULT');
+  background: theme('colors.surface.elevated');
   box-shadow: 0 0 0 3px rgba(75,38,47,0.14);
 }
 
@@ -285,8 +285,8 @@ async function handleLogin() {
   width: 100%;
   min-height: 58px;
   border-radius: 8px;
-  background: #151311;
-  color: white;
+  background: theme('colors.brand.DEFAULT');
+  color: theme('colors.content.inverse');
   font-weight: 800;
   font-size: 17px;
   transition: transform 150ms ease, background 150ms ease, opacity 150ms ease;
@@ -302,7 +302,7 @@ async function handleLogin() {
   border: 1px solid rgba(255,255,255,0.16);
   background: rgba(21,19,17,0.66);
   padding: 16px 18px;
-  color: #ffffff;
+  color: theme('colors.content.inverse');
   font-weight: 650;
   text-shadow: 0 2px 14px rgba(0,0,0,0.82);
   backdrop-filter: blur(5px);
@@ -327,7 +327,7 @@ async function handleLogin() {
 }
 
 .login-submit:hover {
-  background: #000000;
+  background: theme('colors.brand.dark');
 }
 
 .login-submit:active {

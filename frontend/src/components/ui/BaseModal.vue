@@ -3,14 +3,14 @@
     <div class="fixed inset-0 z-50 flex items-end justify-center p-0 sm:items-center sm:p-4" @keydown.esc.prevent="emitClose">
       <button
         type="button"
-        class="absolute inset-0 cursor-default bg-forest-900/70 backdrop-blur-sm"
+        class="absolute inset-0 cursor-default bg-sidebar/70 backdrop-blur-sm"
         :aria-label="`Cerrar ${title}`"
         @click="emitClose"
       ></button>
 
       <section
         ref="panel"
-        class="relative max-h-[92dvh] w-full overflow-y-auto rounded-t-lg border border-paper-300 bg-paper-0 p-6 shadow-[0_24px_70px_rgba(21,19,17,0.24)] sm:rounded-lg"
+        class="relative max-h-[92dvh] w-full overflow-y-auto rounded-t-lg border border-border-strong bg-surface-elevated p-6 shadow-[0_24px_70px_rgba(21,19,17,0.24)] sm:rounded-lg"
         :class="sizeClass"
         role="dialog"
         aria-modal="true"
@@ -21,10 +21,10 @@
         <div class="mb-5 flex items-start justify-between gap-4">
           <div>
             <p v-if="kicker" class="page-kicker">{{ kicker }}</p>
-            <h2 :id="titleId" class="font-heading text-xl font-bold text-ink-0">{{ title }}</h2>
-            <p v-if="description" class="mt-1 text-sm text-ink-500">{{ description }}</p>
+            <h2 :id="titleId" class="font-heading text-xl font-bold text-content">{{ title }}</h2>
+            <p v-if="description" class="mt-1 text-sm text-content-secondary">{{ description }}</p>
           </div>
-          <button type="button" class="icon-action shrink-0 text-ink-500" :aria-label="`Cerrar ${title}`" @click="emitClose">
+          <button type="button" class="icon-action shrink-0 text-content-secondary" :aria-label="`Cerrar ${title}`" @click="emitClose">
             <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
               <line x1="18" y1="6" x2="6" y2="18" />
               <line x1="6" y1="6" x2="18" y2="18" />

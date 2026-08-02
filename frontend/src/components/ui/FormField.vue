@@ -1,11 +1,11 @@
 <template>
   <div>
-    <label :for="id" class="mb-1.5 block text-xs font-semibold uppercase text-ink-500">
+    <label :for="id" class="mb-1.5 block text-xs font-semibold uppercase text-content-secondary">
       {{ label }}<span v-if="required" aria-hidden="true"> *</span>
     </label>
     <slot :id="id" :described-by="describedBy" :invalid="!!error" />
-    <p v-if="help && !error" :id="helpId" class="mt-1 text-xs text-ink-500">{{ help }}</p>
-    <p v-if="error" :id="errorId" class="mt-1 text-xs font-semibold text-red-800" role="alert">{{ error }}</p>
+    <p v-if="help && !error" :id="helpId" class="mt-1 text-xs text-content-secondary">{{ help }}</p>
+    <p v-if="error" :id="errorId" class="mt-1 text-xs font-semibold text-status-danger" role="alert">{{ error }}</p>
   </div>
 </template>
 

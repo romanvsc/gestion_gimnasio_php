@@ -1,23 +1,23 @@
 <template>
-  <div class="min-h-screen bg-paper-0 text-ink-0 lg:flex">
-    <aside class="hidden lg:flex fixed inset-y-0 left-0 z-30 w-72 flex-col border-r border-forest-700 bg-forest-900">
-      <div class="border-b border-forest-700 px-6 py-6">
+  <div class="min-h-screen bg-surface-elevated text-content lg:flex">
+    <aside class="hidden lg:flex fixed inset-y-0 left-0 z-30 w-72 flex-col border-r border-border-dark bg-sidebar">
+      <div class="border-b border-border-dark px-6 py-6">
         <div class="flex items-center gap-3">
-          <div class="flex h-11 w-11 items-center justify-center rounded-lg bg-timber-0 text-forest-900 shadow-[inset_0_1px_0_rgba(255,255,255,0.18)]">
+          <div class="flex h-11 w-11 items-center justify-center rounded-lg bg-accent text-content shadow-[inset_0_1px_0_rgba(255,255,255,0.18)]">
             <IconDumbbell class="h-6 w-6" />
           </div>
           <div class="min-w-0">
-            <p class="truncate font-heading text-xl font-bold uppercase leading-none text-timber-0">{{ auth.companyName || 'Gimnasio' }}</p>
-            <p class="mt-1 text-xs font-semibold uppercase text-paper-300">Gym System</p>
+            <p class="truncate font-heading text-xl font-bold uppercase leading-none text-accent">{{ auth.companyName || 'Gimnasio' }}</p>
+            <p class="mt-1 text-xs font-semibold uppercase text-content-inverse/75">Gym System</p>
           </div>
         </div>
 
-        <div class="mt-5 rounded-lg border border-forest-700 bg-forest-800 px-4 py-3">
+        <div class="mt-5 rounded-lg border border-border-dark bg-sidebar-elevated px-4 py-3">
           <div class="flex items-center gap-2">
-            <span class="h-2.5 w-2.5 rounded-full bg-timber-0"></span>
-            <span class="text-xs font-bold uppercase text-timber-0">Gym abierto</span>
+            <span class="h-2.5 w-2.5 rounded-full bg-accent"></span>
+            <span class="text-xs font-bold uppercase text-status-success">Gym abierto</span>
           </div>
-          <p class="mt-2 text-xs font-medium text-paper-300">
+          <p class="mt-2 text-xs font-medium text-content-inverse/75">
             {{ activeMembers }} activos · {{ debtMembers }} en mora
           </p>
         </div>
@@ -45,7 +45,7 @@
           <span>Planes</span>
         </RouterLink>
 
-        <div class="my-4 border-t border-forest-700"></div>
+        <div class="my-4 border-t border-border-dark"></div>
 
         <RouterLink to="/reports" class="nav-link" :class="{ active: $route.path === '/reports' }">
           <IconReports />
@@ -57,17 +57,17 @@
         </RouterLink>
       </nav>
 
-      <div class="border-t border-forest-700 px-3 py-4">
-        <div class="rounded-lg border border-forest-700 bg-forest-800 px-4 py-3">
+      <div class="border-t border-border-dark px-3 py-4">
+        <div class="rounded-lg border border-border-dark bg-sidebar-elevated px-4 py-3">
           <div class="flex items-center gap-3">
-            <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-timber-0">
-              <span class="font-heading text-sm font-bold text-timber-800">{{ userInitials }}</span>
+            <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-accent">
+              <span class="font-heading text-sm font-bold text-brand">{{ userInitials }}</span>
             </div>
             <div class="min-w-0 flex-1">
-              <p class="truncate text-sm font-semibold text-timber-0">{{ auth.userName }}</p>
-              <p class="text-xs font-medium uppercase text-paper-300">{{ auth.userRole }}</p>
+              <p class="truncate text-sm font-semibold text-accent">{{ auth.userName }}</p>
+              <p class="text-xs font-medium uppercase text-content-inverse/75">{{ auth.userRole }}</p>
             </div>
-            <button @click="handleLogout" class="rounded-md p-2 text-paper-300 transition hover:bg-slate-0 hover:text-timber-0" aria-label="Cerrar sesión">
+            <button @click="handleLogout" class="rounded-md p-2 text-content-inverse/75 transition hover:bg-brand hover:text-accent" aria-label="Cerrar sesión">
               <IconLogout class="h-4 w-4" />
             </button>
           </div>
@@ -76,18 +76,18 @@
     </aside>
 
     <div class="flex min-h-screen flex-1 flex-col lg:ml-72">
-      <header class="sticky top-0 z-20 border-b border-paper-300 bg-paper-100/95 px-4 py-3 backdrop-blur lg:hidden">
+      <header class="sticky top-0 z-20 border-b border-border-strong bg-surface-muted/95 px-4 py-3 backdrop-blur lg:hidden">
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-2">
-            <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-forest-0 text-white">
+            <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-brand text-white">
               <IconDumbbell class="h-4 w-4" />
             </div>
             <div>
-              <p class="font-heading text-base font-bold uppercase leading-none text-ink-0">{{ auth.companyName || 'Gimnasio' }}</p>
-              <p class="text-[10px] font-semibold uppercase text-ink-500">Gym System</p>
+              <p class="font-heading text-base font-bold uppercase leading-none text-content">{{ auth.companyName || 'Gimnasio' }}</p>
+              <p class="text-[10px] font-semibold uppercase text-content-secondary">Gym System</p>
             </div>
           </div>
-          <button @click="handleLogout" class="rounded-md p-2 text-ink-500 hover:bg-red-100 hover:text-red-800" aria-label="Cerrar sesión">
+          <button @click="handleLogout" class="rounded-md p-2 text-content-secondary hover:bg-status-danger/10 hover:text-status-danger" aria-label="Cerrar sesión">
             <IconLogout class="h-4 w-4" />
           </button>
         </div>
@@ -102,12 +102,12 @@
       </main>
     </div>
 
-    <nav class="safe-bottom fixed bottom-0 left-0 right-0 z-30 border-t border-paper-300 bg-paper-100/95 backdrop-blur lg:hidden" aria-label="Navegación móvil">
+    <nav class="safe-bottom fixed bottom-0 left-0 right-0 z-30 border-t border-border-strong bg-surface-muted/95 backdrop-blur lg:hidden" aria-label="Navegación móvil">
       <Transition name="mobile-more">
         <div
           v-if="mobileMoreOpen"
           id="mobile-more-menu"
-          class="absolute bottom-full right-3 mb-2 w-56 rounded-lg border border-paper-300 bg-paper-0 p-2 shadow-[0_18px_44px_rgba(21,19,17,0.18)]"
+          class="absolute bottom-full right-3 mb-2 w-56 rounded-lg border border-border-strong bg-surface-elevated p-2 shadow-[0_18px_44px_rgba(21,19,17,0.18)]"
           role="menu"
           aria-label="Más opciones"
         >
@@ -286,13 +286,13 @@ function handleLogout() {
 
 <style scoped>
 .mobile-nav-item {
-  @apply flex min-h-[64px] flex-col items-center justify-center gap-1 py-3 text-[10px] font-semibold uppercase text-ink-500 transition-colors duration-150;
+  @apply flex min-h-[64px] flex-col items-center justify-center gap-1 py-3 text-[10px] font-semibold uppercase text-content-secondary transition-colors duration-150;
 }
 .mobile-nav-item.active {
-  @apply text-forest-900;
+  @apply text-content;
 }
 .mobile-more-item {
-  @apply flex min-h-11 items-center gap-3 rounded-lg px-3 py-2 text-sm font-semibold text-ink-0 transition hover:bg-paper-100;
+  @apply flex min-h-11 items-center gap-3 rounded-lg px-3 py-2 text-sm font-semibold text-content transition hover:bg-surface-muted;
 }
 .safe-bottom {
   padding-bottom: env(safe-area-inset-bottom, 0);

@@ -8,7 +8,7 @@
           </button>
           <div>
             <p class="page-kicker">Ficha de socio</p>
-            <div v-if="loading" class="mt-2 h-8 w-48 animate-pulse rounded bg-paper-200"></div>
+            <div v-if="loading" class="mt-2 h-8 w-48 animate-pulse rounded bg-surface-strong"></div>
             <h1 v-else class="page-title mt-2">{{ member?.first_name }} {{ member?.last_name }}</h1>
           </div>
         </div>
@@ -25,33 +25,33 @@
       </header>
 
       <div v-if="loading" class="grid gap-4 lg:grid-cols-[0.95fr_1.25fr]">
-        <div class="glass-card h-72 animate-pulse bg-paper-100"></div>
-        <div class="glass-card h-72 animate-pulse bg-paper-100"></div>
+        <div class="surface-card h-72 animate-pulse bg-surface-muted"></div>
+        <div class="surface-card h-72 animate-pulse bg-surface-muted"></div>
       </div>
 
       <div v-else-if="member" class="grid gap-4 lg:grid-cols-[0.95fr_1.25fr]">
         <aside class="panel-card">
           <div class="flex items-start gap-4">
-            <div class="flex h-16 w-16 shrink-0 items-center justify-center rounded-lg bg-forest-0 text-white">
+            <div class="flex h-16 w-16 shrink-0 items-center justify-center rounded-lg bg-brand text-white">
               <span class="font-heading text-2xl font-bold">{{ initials }}</span>
             </div>
             <div class="min-w-0">
               <div class="flex flex-wrap items-center gap-2">
-                <h2 class="font-heading text-2xl font-bold uppercase text-ink-0">{{ member.first_name }} {{ member.last_name }}</h2>
+                <h2 class="font-heading text-2xl font-bold uppercase text-content">{{ member.first_name }} {{ member.last_name }}</h2>
                 <span :class="member.status === 'active' ? 'badge-active' : 'badge-inactive'">
                   {{ member.status === 'active' ? 'Activo' : 'Inactivo' }}
                 </span>
               </div>
-              <p class="mt-1 text-sm text-ink-500">Socio desde {{ formatDate(member.joined_at || member.created_at) }}</p>
+              <p class="mt-1 text-sm text-content-secondary">Socio desde {{ formatDate(member.joined_at || member.created_at) }}</p>
             </div>
           </div>
 
-          <div class="mt-5 rounded-lg border p-4" :class="member.quota_current ? 'border-forest-100 bg-forest-100/70' : 'border-slate-0 bg-slate-100'">
-            <p class="text-xs font-extrabold uppercase" :class="member.quota_current ? 'text-forest-900' : 'text-slate-800'">Estado de cuota</p>
-            <p class="mt-2 font-heading text-4xl font-bold uppercase" :class="member.quota_current ? 'text-forest-900' : 'text-slate-800'">
+          <div class="mt-5 rounded-lg border p-4" :class="member.quota_current ? 'border-status-success/30 bg-status-success/10' : 'border-status-danger/30 bg-status-danger/10'">
+            <p class="text-xs font-extrabold uppercase" :class="member.quota_current ? 'text-status-success' : 'text-status-danger'">Estado de cuota</p>
+            <p class="mt-2 font-heading text-4xl font-bold uppercase" :class="member.quota_current ? 'text-status-success' : 'text-status-danger'">
               {{ member.quota_current ? 'Al día' : 'En mora' }}
             </p>
-            <p class="mt-1 text-sm" :class="member.quota_current ? 'text-forest-900' : 'text-slate-800'">
+            <p class="mt-1 text-sm" :class="member.quota_current ? 'text-status-success' : 'text-status-danger'">
               {{ member.membership_valid_until ? `Vigente hasta ${formatDate(member.membership_valid_until)}` : 'Sin vigencia cargada' }}
             </p>
           </div>
@@ -69,7 +69,7 @@
             <InfoRow label="Altura" :value="member.height_cm ? `${member.height_cm} cm` : 'Sin dato'" />
           </div>
 
-          <div class="mt-5 flex flex-wrap gap-2 border-t border-paper-300 pt-4">
+          <div class="mt-5 flex flex-wrap gap-2 border-t border-border-strong pt-4">
             <button
               v-if="member.status === 'active'"
               @click="toggleStatus('inactive')"
@@ -93,35 +93,35 @@
           <section class="panel-card">
             <div class="mb-4 flex items-center justify-between gap-3">
               <div>
-                <p class="text-xs font-extrabold uppercase text-ink-500">Historial financiero</p>
-                <h2 class="mt-1 font-heading text-3xl font-bold uppercase text-ink-0">Últimas cuotas</h2>
+                <p class="text-xs font-extrabold uppercase text-content-secondary">Historial financiero</p>
+                <h2 class="mt-1 font-heading text-3xl font-bold uppercase text-content">Últimas cuotas</h2>
               </div>
-              <span class="rounded-md bg-timber-100 px-3 py-1 font-heading text-xl font-bold text-timber-800">
+              <span class="rounded-md bg-accent-soft px-3 py-1 font-heading text-xl font-bold text-brand">
                 {{ member.payments?.length || 0 }}
               </span>
             </div>
-            <div v-if="member.payments?.length" class="divide-y divide-paper-300">
+            <div v-if="member.payments?.length" class="divide-y divide-border-strong">
               <article v-for="payment in member.payments" :key="payment.id" class="flex items-center justify-between gap-4 py-3">
                 <div>
-                  <p class="font-semibold text-ink-0">{{ payment.concept }}</p>
-                  <p class="text-xs text-ink-500">{{ formatDate(payment.payment_date) }} - {{ payment.legacy_method_name || methodLabel(payment.method) }}</p>
-                  <p v-if="payment.period_start || payment.period_end" class="mt-1 text-xs text-ink-500">
+                  <p class="font-semibold text-content">{{ payment.concept }}</p>
+                  <p class="text-xs text-content-secondary">{{ formatDate(payment.payment_date) }} - {{ payment.legacy_method_name || methodLabel(payment.method) }}</p>
+                  <p v-if="payment.period_start || payment.period_end" class="mt-1 text-xs text-content-secondary">
                     Período {{ formatDate(payment.period_start) }} - {{ formatDate(payment.period_end) }}
                   </p>
                 </div>
-                <span class="font-heading text-xl font-bold text-forest-900">{{ formatCurrency(payment.amount) }}</span>
+                <span class="font-heading text-xl font-bold text-content">{{ formatCurrency(payment.amount) }}</span>
               </article>
             </div>
-            <p v-else class="rounded-lg bg-paper-100 px-4 py-8 text-center text-sm text-ink-500">Sin cuotas registradas</p>
+            <p v-else class="rounded-lg bg-surface-muted px-4 py-8 text-center text-sm text-content-secondary">Sin cuotas registradas</p>
           </section>
 
           <section class="panel-card">
             <div class="mb-4 flex items-center justify-between gap-3">
               <div>
-                <p class="text-xs font-extrabold uppercase text-ink-500">Control de acceso</p>
-                <h2 class="mt-1 font-heading text-3xl font-bold uppercase text-ink-0">Últimos accesos</h2>
+                <p class="text-xs font-extrabold uppercase text-content-secondary">Control de acceso</p>
+                <h2 class="mt-1 font-heading text-3xl font-bold uppercase text-content">Últimos accesos</h2>
               </div>
-              <span class="rounded-md bg-slate-100 px-3 py-1 font-heading text-xl font-bold text-slate-800">
+              <span class="rounded-md bg-brand-soft px-3 py-1 font-heading text-xl font-bold text-brand-dark">
                 {{ member.checkins?.length || 0 }}
               </span>
             </div>
@@ -130,21 +130,21 @@
                 v-for="checkin in member.checkins"
                 :key="checkin.id"
                 class="rounded-lg border px-3 py-3"
-                :class="checkin.access_allowed === false || checkin.access_allowed === 0 ? 'border-red-200 bg-red-50' : 'border-paper-300 bg-paper-100'"
+                :class="checkin.access_allowed === false || checkin.access_allowed === 0 ? 'border-status-danger/30 bg-status-danger/10' : 'border-status-success/30 bg-status-success/10'"
               >
-                <p class="font-heading text-lg font-bold text-ink-0">{{ formatTime(checkin.checkin_at) }}</p>
-                <p class="text-xs text-ink-500">{{ formatDateTime(checkin.checkin_at) }}</p>
-                <p class="mt-1 text-xs font-bold uppercase" :class="checkin.access_allowed === false || checkin.access_allowed === 0 ? 'text-red-800' : 'text-forest-900'">
+                <p class="font-heading text-lg font-bold text-content">{{ formatTime(checkin.checkin_at) }}</p>
+                <p class="text-xs text-content-secondary">{{ formatDateTime(checkin.checkin_at) }}</p>
+                <p class="mt-1 text-xs font-bold uppercase" :class="checkin.access_allowed === false || checkin.access_allowed === 0 ? 'text-status-danger' : 'text-status-success'">
                   {{ checkin.access_allowed === false || checkin.access_allowed === 0 ? 'Denegado' : 'Permitido' }}
                 </p>
               </article>
             </div>
-            <p v-else class="rounded-lg bg-paper-100 px-4 py-8 text-center text-sm text-ink-500">Sin accesos registrados</p>
+            <p v-else class="rounded-lg bg-surface-muted px-4 py-8 text-center text-sm text-content-secondary">Sin accesos registrados</p>
           </section>
 
           <section v-if="member.notes" class="panel-card">
-            <p class="text-xs font-extrabold uppercase text-ink-500">Notas</p>
-            <p class="mt-2 text-sm leading-6 text-ink-700">{{ member.notes }}</p>
+            <p class="text-xs font-extrabold uppercase text-content-secondary">Notas</p>
+            <p class="mt-2 text-sm leading-6 text-content-strong">{{ member.notes }}</p>
           </section>
         </main>
       </div>
@@ -184,9 +184,9 @@ const showPaymentModal = ref(false)
 const InfoRow = {
   props: ['label', 'value'],
   setup(props) {
-    return () => h('div', { class: 'rounded-lg border border-paper-300 bg-paper-100 px-3 py-3' }, [
-      h('p', { class: 'text-xs font-bold uppercase text-ink-500' }, props.label),
-      h('p', { class: 'mt-1 truncate text-sm font-semibold text-ink-0' }, props.value),
+    return () => h('div', { class: 'rounded-lg border border-border-strong bg-surface-muted px-3 py-3' }, [
+      h('p', { class: 'text-xs font-bold uppercase text-content-secondary' }, props.label),
+      h('p', { class: 'mt-1 truncate text-sm font-semibold text-content' }, props.value),
     ])
   },
 }

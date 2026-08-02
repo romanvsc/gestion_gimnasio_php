@@ -138,15 +138,39 @@
                 </td>
                 <td class="table-body-cell">
                   <div class="flex justify-end gap-2">
-                    <button class="icon-action text-forest-900" :aria-label="`Registrar acceso para ${member.first_name} ${member.last_name}`" @click.stop="quickCheckin(member)">
-                      <IconCheck class="h-4 w-4" />
-                    </button>
-                    <button class="icon-action text-timber-800" :aria-label="`Registrar cuota para ${member.first_name} ${member.last_name}`" @click.stop="openPayment(member)">
-                      <IconMoney class="h-4 w-4" />
-                    </button>
-                    <button class="icon-action text-ink-500" :aria-label="`Editar socio ${member.first_name} ${member.last_name}`" @click.stop="openEdit(member)">
-                      <IconEdit class="h-4 w-4" />
-                    </button>
+                    <span class="action-tooltip-wrap">
+                      <button
+                        class="icon-action text-forest-900"
+                        :aria-label="`Registrar acceso para ${member.first_name} ${member.last_name}`"
+                        :aria-describedby="`access-tooltip-${member.id}`"
+                        @click.stop="quickCheckin(member)"
+                      >
+                        <IconCheck class="h-4 w-4" />
+                      </button>
+                      <span :id="`access-tooltip-${member.id}`" class="action-tooltip" role="tooltip">Registrar acceso</span>
+                    </span>
+                    <span class="action-tooltip-wrap">
+                      <button
+                        class="icon-action text-timber-800"
+                        :aria-label="`Registrar cuota para ${member.first_name} ${member.last_name}`"
+                        :aria-describedby="`payment-tooltip-${member.id}`"
+                        @click.stop="openPayment(member)"
+                      >
+                        <IconMoney class="h-4 w-4" />
+                      </button>
+                      <span :id="`payment-tooltip-${member.id}`" class="action-tooltip" role="tooltip">Registrar cuota</span>
+                    </span>
+                    <span class="action-tooltip-wrap">
+                      <button
+                        class="icon-action text-ink-500"
+                        :aria-label="`Editar socio ${member.first_name} ${member.last_name}`"
+                        :aria-describedby="`edit-tooltip-${member.id}`"
+                        @click.stop="openEdit(member)"
+                      >
+                        <IconEdit class="h-4 w-4" />
+                      </button>
+                      <span :id="`edit-tooltip-${member.id}`" class="action-tooltip" role="tooltip">Editar socio</span>
+                    </span>
                   </div>
                 </td>
               </tr>

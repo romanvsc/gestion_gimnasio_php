@@ -13,12 +13,12 @@ export default defineConfig(({ command }) => ({
   },
   server: {
     host: '127.0.0.1',
-    port: 5174,
+    port: 5185,
     strictPort: true,
     hmr: {
       host: '127.0.0.1',
       protocol: 'ws',
-      clientPort: 5174,
+      clientPort: 5185,
     },
     proxy: {
       '/api': {

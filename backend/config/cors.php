@@ -8,9 +8,9 @@ function setCorsHeaders(): void {
 
     $allowedOrigins = [
         $_ENV['FRONTEND_URL'] ?? '',
-        'http://localhost:5174',
+        'http://localhost:5185',
         'http://localhost:4173',
-        'http://127.0.0.1:5174',
+        'http://127.0.0.1:5185',
     ];
 
     if (in_array($origin, array_filter($allowedOrigins), true)) {

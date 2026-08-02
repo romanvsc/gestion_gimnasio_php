@@ -181,7 +181,36 @@
   }
 
   .icon-action {
-    @apply inline-flex h-10 w-10 items-center justify-center rounded-lg border border-paper-300 bg-paper-100 transition hover:bg-paper-200;
+    @apply inline-flex h-10 w-10 items-center justify-center rounded-lg border border-paper-300 bg-paper-100 transition hover:bg-paper-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-timber-800 focus-visible:ring-offset-2;
+  }
+
+  .action-tooltip-wrap {
+    @apply relative inline-flex;
+  }
+
+  .action-tooltip {
+    @apply pointer-events-none absolute right-full top-1/2 z-30 mr-2 whitespace-nowrap rounded-md bg-ink-0 px-2.5 py-1.5 text-xs font-semibold text-paper-100 opacity-0 shadow-lg;
+    visibility: hidden;
+    transform: translate(0.25rem, -50%);
+    transition: opacity 150ms ease, transform 150ms ease, visibility 150ms ease;
+  }
+
+  .action-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translateY(-50%);
+    border-width: 0.3rem 0 0.3rem 0.35rem;
+    border-style: solid;
+    border-color: transparent transparent transparent #151311;
+  }
+
+  .action-tooltip-wrap:hover .action-tooltip,
+  .action-tooltip-wrap:focus-within .action-tooltip {
+    visibility: visible;
+    opacity: 1;
+    transform: translate(0, -50%);
   }
 }
 

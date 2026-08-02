@@ -10,7 +10,7 @@ DB_NAME=c2650268_gym
 DB_USER=root
 DB_PASS=
 APP_ENV=development
-FRONTEND_URL=http://127.0.0.1:5174
+FRONTEND_URL=http://127.0.0.1:5185
 ```
 
 Para trabajar localmente:
@@ -27,7 +27,7 @@ cd frontend
 npm run dev
 ```
 
-El frontend local corre en `http://127.0.0.1:5174` y Vite manda las llamadas `/api` al backend local `http://127.0.0.1:8004`.
+El frontend local corre en `http://127.0.0.1:5185` y Vite manda las llamadas `/api` al backend local `http://127.0.0.1:8004`.
 
 ## Que subir a Ferozo
 

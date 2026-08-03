@@ -72,3 +72,20 @@ JWT_SECRET=una_clave_larga_distinta_a_la_local
 ```
 
 No reemplazar ese archivo con el `.env` local, porque apuntaria la app del servidor a una base que no existe en Ferozo.
+
+## Sincronizar una base existente
+
+Si la base de Ferozo fue creada con una version anterior del proyecto, importar desde phpMyAdmin:
+
+```text
+sql_sync_ferozo_runtime_schema.sql
+```
+
+Seleccionar primero la misma base indicada por `DB_NAME` en el `.env` remoto. La migracion es idempotente: agrega solamente las columnas e indices operativos que falten y no elimina datos existentes. Se puede ejecutar nuevamente sin duplicar columnas.
+
+Despues de importarla, comprobar con la cuenta demo:
+
+- `GET /gimnasio/api/members` responde `200`.
+- `GET /gimnasio/api/plans` responde `200`.
+- `GET /gimnasio/api/settings` responde `200`.
+- Crear un socio responde `201`.

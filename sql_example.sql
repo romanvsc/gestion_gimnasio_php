@@ -155,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `checkins` (
 
 -- ============================================================
 -- DATOS DEMO
--- Empresa: Demo Gym | Admin: admin@demogym.com / Admin1234!
+-- Empresa: Demo Gym | Admin: admin@demogym.com / password
 -- ============================================================
 
 INSERT INTO `companies` (`id`, `name`, `email`, `phone`, `address`, `city`, `status`) VALUES
